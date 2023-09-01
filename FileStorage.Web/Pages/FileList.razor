@@ -1,0 +1,32 @@
+﻿@page "/"
+@inherits FileListBase
+
+<h3>List of Files</h3>
+
+<br/>
+
+@if (AllFiles != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">File Name</th>
+                <th scope="col">File Version</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in AllFiles)
+            {
+                <tr>
+                    <td>@file.FileName</td>
+                    <td>@file.FileVersion</td>
+                    <td><a href='@string.Format("edit/{0}", file.Id)' class="btn btn-success m-1">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br/>
+
+<a href="@($"new")" class="btn btn-primary m-1">Upload a new file</a>

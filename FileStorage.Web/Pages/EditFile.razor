@@ -1,0 +1,12 @@
+﻿@page "/edit/{id}"
+@inherits EditFileBase
+
+<EditForm Model="@UploadFile" OnValidSubmit="HandleValidSubmit">
+    <div class="form-group row">
+        <label for="fileName" class="col-sm-2 col-form-label">File Name</label>
+        <div id="filename"class="col-sm-10"><InputText @bind-Value="UploadFile.FileName"></InputText></div>
+        <br/>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-danger" type="button" @onclick="Delete_Click">Delete</button>
+</EditForm>
