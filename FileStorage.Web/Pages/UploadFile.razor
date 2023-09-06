@@ -1,11 +1,10 @@
 ﻿@page "/new"
-@inherits UploadFileBase
 
 <h3>Upload New File</h3>
 
 <br/>
 
-<EditForm Model="@UploadFile">
+<EditForm Model="@UploadFiles">
     <div class="form-group row">
         <div class="col-sm-10">
             <InputFile OnChange="@LoadFiles"></InputFile>

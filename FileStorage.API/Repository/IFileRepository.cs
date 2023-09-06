@@ -1,7 +1,4 @@
-﻿using FileStorage.API.Model;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FileStorage.API.Repository
+﻿namespace FileStorage.API.Repository
 {
     public interface IFileRepository
     {

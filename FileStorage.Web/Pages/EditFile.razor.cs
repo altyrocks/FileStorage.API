@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace FileStorage.Web.Pages
 {
-    public class EditFileBase : ComponentBase
+    public partial class EditFile
     {
         [Inject]
         public IFileService FileService { get; set; }
@@ -19,7 +19,7 @@ namespace FileStorage.Web.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            UploadFile = new UploadedFiles{};
+            UploadFile = new UploadedFiles { };
 
             UploadFile = await FileService.GetFile(int.Parse(Id));
         }

@@ -1,11 +1,11 @@
 ﻿using FileStorage.API.Model;
 using FileStorage.Web.Services;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components;
 
 namespace FileStorage.Web.Pages
 {
-    public class UploadFileBase : ComponentBase
+    public partial class UploadFile
     {
         [Inject]
         public IFileService FileService { get; set; }
@@ -13,45 +13,48 @@ namespace FileStorage.Web.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public UploadedFiles UploadFile { get; set; }
+        public UploadedFiles UploadFiles { get; set; }
 
         public List<string> errors = new();
 
-        protected override async Task OnInitializedAsync()
+        protected override Task OnInitializedAsync()
         {
-            UploadFile = new UploadedFiles
+            UploadFiles = new UploadedFiles
             {
                 FileName = string.Empty,
                 FileData = null,
                 FileVersion = 1
             };
+
+            return Task.CompletedTask;
         }
 
         public async Task LoadFiles(InputFileChangeEventArgs e)
         {
             errors.Clear();
+
             var counter = 1;
 
-            MemoryStream ms = new MemoryStream();
+            MemoryStream ms = new();
 
             await e.File.OpenReadStream().CopyToAsync(ms);
 
-            UploadFile.FileData = ms.ToArray();
-            UploadFile.FileName = e.File.Name;
+            UploadFiles.FileData = ms.ToArray();
+            UploadFiles.FileName = e.File.Name;
 
             var AllFiles = (await FileService.GetAllFiles()).ToList();
 
-            foreach (var file in AllFiles) 
-            { 
-                if (file.FileName == UploadFile.FileName)
+            foreach (var file in AllFiles)
+            {
+                if (file.FileName == UploadFiles.FileName)
                 {
                     counter++;
                 }
             }
 
-            UploadFile.FileVersion = counter;
+            UploadFiles.FileVersion = counter;
 
-            UploadedFiles result = await FileService.CreateFile(UploadFile);
+            UploadedFiles result = await FileService.CreateFile(UploadFiles);
 
             if (result != null)
             {

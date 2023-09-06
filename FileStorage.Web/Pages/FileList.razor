@@ -1,5 +1,4 @@
 ﻿@page "/"
-@inherits FileListBase
 
 <h3>List of Files</h3>
 
@@ -20,7 +19,7 @@
                 <tr>
                     <td>@file.FileName</td>
                     <td>@file.FileVersion</td>
-                    <td><a href='@string.Format("edit/{0}", file.Id)' class="btn btn-success m-1">Edit</a></td>
+                    <td><a href='@string.Format($"edit/{file.Id}")' class="btn btn-success m-1">Edit</a></td>
                 </tr>
             }
         </tbody>

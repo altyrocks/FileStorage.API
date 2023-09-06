@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace FileStorage.Web.Pages
 {
-    public class FileListBase : ComponentBase
+    public partial class FileList
     {
         [Inject]
-        public IFileService FileService { get; set; }   
+        public IFileService FileService { get; set; }
 
         public IEnumerable<UploadedFiles> AllFiles { get; set; }
 

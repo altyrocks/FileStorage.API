@@ -6,6 +6,6 @@ namespace FileStorage.API.Model
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<UploadedFiles>? UploadedFiles { get; set; }
+        public DbSet<UploadedFiles> UploadedFiles { get; set; }
     }
 }
